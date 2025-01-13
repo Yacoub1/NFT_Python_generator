@@ -1,6 +1,6 @@
 # Python NFT Generator Tool
 
-![Python NFT Generator Logo](/NFT_Python_generator/tool_logo.png)
+![Python NFT Generator Logo](/NFT_Python_generator/figures/tool_logo.png)
 
 The Python NFT Generator Tool is an intuitive GUI-based Python application for generating NFT collections from SVG files. It supports rarity calculations, natural supply distribution, and easy attribute mapping to create diverse and unique NFT collections.
 
@@ -16,7 +16,7 @@ The Python NFT Generator Tool is an intuitive GUI-based Python application for g
 
 ## GUI Overview
 
-![NFT Generator Tool GUI](./path_to_gui_screenshot.png)
+![NFT Generator Tool GUI](/NFT_Python_generator/figures/nft_gen_gui.png)
 
 The GUI provides all necessary fields for generating NFTs, including meta SVG file paths, export folders, rarity calculations, and supply adjustments.
 
