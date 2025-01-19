@@ -5,6 +5,7 @@ import os
 import pandas as pd
 import numpy as np
 from nft_gen_tool import *
+import webbrowser
 
 blockchain_cryptocurrency_map = {
     "Ethereum": ["ETH"],
@@ -435,6 +436,13 @@ adjust_price_button.grid(row=21, column=1, padx=10, pady=20)
 # Add the Help button to the main window
 help_button = tk.Button(root, text="Help!", command=open_help_window, bg="blue", fg="white", font=("Arial", 12, "bold"))
 help_button.grid(row=1, column=3, padx=10, pady=20)
+
+# Support Development button
+def open_donation_link():
+    webbrowser.open("https://www.paypal.com/donate/?hosted_button_id=MQSW5283NCXCJ")
+
+donation_button = tk.Button(root, text="Support Development", command=open_donation_link, bg="gold", fg="black")
+donation_button.grid(row=21, column=2, padx=10, pady=20)
                                                                                   
 root.geometry("1000x750")
 root.resizable(False,False)

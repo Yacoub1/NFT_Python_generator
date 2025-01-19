@@ -23,10 +23,10 @@ The GUI provides all necessary fields for generating NFTs, including meta SVG fi
 ## Example Outputs
 
 ### Crazy Candles Collection
-![Crazy Candles Example GIF](./path_to_crazy_candles_example.gif)
+![Crazy Candles Example GIF](/NFT_Python_generator/figures/squared_face_collection.gif)
 
 ### Square Face Collection
-![Square Face Example GIF](./path_to_square_face_example.gif)
+![Square Face Example GIF](/NFT_Python_generator/figures/path_to_square_face_example.gif)
 
 ## Installation
 
@@ -86,8 +86,12 @@ If you want to contribute to this project, feel free to fork this repository, ma
 
 ## Support
 
-For support, create an issue in this repository or contact me at zude07@yahoo.com.
+For support, create an issue in this repository.
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+## 💡 Support This Project  
+If you are using this tool for commercial purposes and would like to support its development,  
+consider contributing here: [PayPal Donation](https://www.paypal.com/donate/?hosted_button_id=MQSW5283NCXCJ).
