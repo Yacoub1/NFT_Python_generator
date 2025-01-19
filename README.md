@@ -26,7 +26,7 @@ The GUI provides all necessary fields for generating NFTs, including meta SVG fi
 ![Crazy Candles Example GIF](/NFT_Python_generator/figures/squared_face_collection.gif)
 
 ### Square Face Collection
-![Square Face Example GIF](/NFT_Python_generator/figures/path_to_square_face_example.gif)
+![Square Face Example GIF](/NFT_Python_generator/figures/crazycandles_collection.gif)
 
 ## Installation
 
