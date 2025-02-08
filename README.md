@@ -60,8 +60,6 @@ The GUI provides all necessary fields for generating NFTs, including meta SVG fi
 
 ## Usage
 
-## Usage
-
 1. **Launch the GUI application.**
 2. **Fill in the required fields**:
    - **Meta SVG File Path**: The meta SVG file must contain all possible combinations of layers.
@@ -79,6 +77,10 @@ The GUI provides all necessary fields for generating NFTs, including meta SVG fi
 5. **Generate NFTs**:
    - Click **Generate NFTs** to create the collection.
    - Once completed, you can further adjust prices using rarity with the **Adjust Prices Based on Rarity** button.
+
+# Udemy Course:
+This project is part of the **Udemy course** on generating NFT collections using Python. If you want a step-by-step explanation, including how to use this tool effectively, you can check out the course on Udemy.
+**[NFT Collection Generation with Python - Udemy Course](#)**  
 
 ## Contributing
 

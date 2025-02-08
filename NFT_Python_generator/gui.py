@@ -293,8 +293,10 @@ root.title("NFT Generator Tool")
 
 
 # Add a logo to the tool
-try:
-    logo_image = Image.open("tool_logo.png")  
+script_dir = os.path.dirname(os.path.abspath(__file__))
+logo_path = os.path.join(script_dir, "figures/tool_logo.png")
+try:    
+    logo_image = Image.open(logo_path)  
     logo_image = logo_image.resize((200, 100), Image.ANTIALIAS)
     logo_photo = ImageTk.PhotoImage(logo_image)
     tk.Label(root, image=logo_photo).grid(row=0, column=0, columnspan=3, pady=10)
