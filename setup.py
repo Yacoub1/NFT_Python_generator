@@ -6,7 +6,7 @@ setup(
     description='A Python-based tool for generating NFT collections from SVG files.',
     author='Ali Al-Yacoub',
     author_email='zude07@yahoo.com',
-    url='https://github.com/your-repository-url',  # Replace with your repository URL
+    url='https://github.com/your-repository-url',  #ToDo
     packages=find_packages(),
     install_requires=[
         'CairoSVG==2.5.2',
@@ -17,7 +17,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'nft_gen_tool=nft_gen_tool:main',  # Replace `main` with the entry function of your script
+            'nft_gen_tool=NFT_Python_Generator.nft_gen_tool:main', 
         ],
     },
     classifiers=[

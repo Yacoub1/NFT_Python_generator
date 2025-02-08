@@ -5,7 +5,8 @@ import copy
 import sys
 import json
 import itertools
-import cairosvg 
+import cairosvg
+import argparse 
 import pandas as pd
 import numpy as np
 
@@ -428,3 +429,34 @@ def calculate_rarity_with_supply(df, attribute_column="attributes", supply_colum
 
     return df
  
+
+def main():
+    """Command-line interface for NFT generation."""
+    parser = argparse.ArgumentParser(description="NFT Python Generator")
+    
+    parser.add_argument("-m", "--meta-svg", type=str, required=True, help="Path to the meta SVG file")
+    parser.add_argument("-b", "--base-layer", type=str, default="Layer 1", help="Base layer name")
+    parser.add_argument("-o", "--output", type=str, default="exported_svgs", help="Output folder")
+    parser.add_argument("-c", "--collection", type=str, default="My NFT Collection", help="NFT collection name")
+    parser.add_argument("-p", "--price", type=float, default=0.001, help="NFT price")
+    parser.add_argument("-r", "--royalty", type=float, default=0.01, help="Royalty percentage")
+
+    args = parser.parse_args()
+
+    if not os.path.exists(args.meta_svg):
+        print("Error: Meta SVG file not found!")
+        return
+    
+    print(f"Generating NFTs from {args.meta_svg}...")
+    metadata, combinations = genrate_collection(
+        file_name=args.meta_svg,
+        baselayer=args.base_layer,
+        export_folder=args.output,
+        collection_name=args.collection,
+        price=args.price,
+        royalty=args.royalty
+    )
+    print(f"NFT Collection saved to {args.output}/")
+
+if __name__ == "__main__":
+    main()

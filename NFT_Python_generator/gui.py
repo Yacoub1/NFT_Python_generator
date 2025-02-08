@@ -261,9 +261,7 @@ def generate_nft_collection():
                 attribute_map=attribute_map_dict,
                 rare=True
                 
-            )
-            
-            
+            )  
 
         # Add supply to the data
         if natural_dis_var.get():
@@ -287,166 +285,176 @@ def generate_nft_collection():
     except Exception as e:
         messagebox.showerror("Error", f"An error occurred: {str(e)}")
 
-# Initialize the GUI window
-root = tk.Tk()
-root.title("NFT Generator Tool")
+def main():
+    global root, meta_svg_entry, base_layer_entry, export_folder_entry, price_entry, royalty_entry, supply_entry
+    global collection_name_entry, cryptocurrency_combobox, sale_type_combobox, rare_var
+    global rare_svg_entry, rare_price_entry, rare_royalty_entry, natural_dis_var, adjust_price_button, rare_svg_browse_button
+    global supply_mean_entry, supply_std_entry, supply_var, attributes_mapping_var, attributes_map_entry, attributes_map_browes_btn
+
+    # Initialize the GUI window
+    root = tk.Tk()
+    root.title("NFT Generator Tool")
 
 
-# Add a logo to the tool
-script_dir = os.path.dirname(os.path.abspath(__file__))
-logo_path = os.path.join(script_dir, "figures/tool_logo.png")
-try:    
-    logo_image = Image.open(logo_path)  
-    logo_image = logo_image.resize((200, 100), Image.ANTIALIAS)
-    logo_photo = ImageTk.PhotoImage(logo_image)
-    tk.Label(root, image=logo_photo).grid(row=0, column=0, columnspan=3, pady=10)
-except FileNotFoundError:
-    tk.Label(root, text="NFT Generator Tool", font=("Arial", 20, "bold")).grid(row=0, column=0, columnspan=3, pady=10)
+    # Add a logo to the tool
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    logo_path = os.path.join(script_dir, "figures/tool_logo.png")
+    try:    
+        logo_image = Image.open(logo_path)  
+        logo_image = logo_image.resize((200, 100), Image.ANTIALIAS)
+        logo_photo = ImageTk.PhotoImage(logo_image)
+        tk.Label(root, image=logo_photo).grid(row=0, column=0, columnspan=3, pady=10)
+    except FileNotFoundError:
+        tk.Label(root, text="NFT Generator Tool", font=("Arial", 20, "bold")).grid(row=0, column=0, columnspan=3, pady=10)
 
-# Input fields for meta SVG file
-tk.Label(root, text="Meta SVG File Path:").grid(row=1, column=0, padx=10, pady=5, sticky="w")
-meta_svg_entry = tk.Entry(root, width=50)
-meta_svg_entry.grid(row=1, column=1, padx=10, pady=5)
+    # Input fields for meta SVG file
+    tk.Label(root, text="Meta SVG File Path:").grid(row=1, column=0, padx=10, pady=5, sticky="w")
+    meta_svg_entry = tk.Entry(root, width=50)
+    meta_svg_entry.grid(row=1, column=1, padx=10, pady=5)
 
-def browse_meta_svg():
-    meta_svg_path = filedialog.askopenfilename(filetypes=[("SVG Files", "*.svg")])
-    meta_svg_entry.insert(0, meta_svg_path)
+    def browse_meta_svg():
+        meta_svg_path = filedialog.askopenfilename(filetypes=[("SVG Files", "*.svg")])
+        meta_svg_entry.insert(0, meta_svg_path)
 
-tk.Button(root, text="Browse", command=browse_meta_svg).grid(row=1, column=2, padx=10, pady=5)
+    tk.Button(root, text="Browse", command=browse_meta_svg).grid(row=1, column=2, padx=10, pady=5)
 
-# Input fields for base layer
-tk.Label(root, text="Base Layer Name:").grid(row=2, column=0, padx=10, pady=5, sticky="w")
-base_layer_entry = tk.Entry(root, width=50)
-base_layer_entry.grid(row=2, column=1, padx=10, pady=5)
+    # Input fields for base layer
+    tk.Label(root, text="Base Layer Name:").grid(row=2, column=0, padx=10, pady=5, sticky="w")
+    base_layer_entry = tk.Entry(root, width=50)
+    base_layer_entry.grid(row=2, column=1, padx=10, pady=5)
 
-# Input fields for export folder
-tk.Label(root, text="Export Folder:").grid(row=3, column=0, padx=10, pady=5, sticky="w")
-export_folder_entry = tk.Entry(root, width=50)
-export_folder_entry.grid(row=3, column=1, padx=10, pady=5)
+    # Input fields for export folder
+    tk.Label(root, text="Export Folder:").grid(row=3, column=0, padx=10, pady=5, sticky="w")
+    export_folder_entry = tk.Entry(root, width=50)
+    export_folder_entry.grid(row=3, column=1, padx=10, pady=5)
 
-def browse_export_folder():
-    export_folder_path = filedialog.askdirectory()
-    export_folder_entry.insert(0, export_folder_path)
+    def browse_export_folder():
+        export_folder_path = filedialog.askdirectory()
+        export_folder_entry.insert(0, export_folder_path)
 
-tk.Button(root, text="Browse", command=browse_export_folder).grid(row=3, column=2, padx=10, pady=5)
+    tk.Button(root, text="Browse", command=browse_export_folder).grid(row=3, column=2, padx=10, pady=5)
 
-# Input fields for collection price
-tk.Label(root, text="Collection Price:").grid(row=4, column=0, padx=10, pady=5, sticky="w")
-price_entry = tk.Entry(root, width=15)
-price_entry.grid(row=4, column=1, padx=10, pady=5)
+    # Input fields for collection price
+    tk.Label(root, text="Collection Price:").grid(row=4, column=0, padx=10, pady=5, sticky="w")
+    price_entry = tk.Entry(root, width=15)
+    price_entry.grid(row=4, column=1, padx=10, pady=5)
 
-# Input fields for collection royalty
-tk.Label(root, text="Collection royalty:").grid(row=4, column=2, padx=10, pady=5, sticky="w")
-royalty_entry = tk.Entry(root, width=15)
-royalty_entry.grid(row=4, column=3, padx=10, pady=5)
+    # Input fields for collection royalty
+    tk.Label(root, text="Collection royalty:").grid(row=4, column=2, padx=10, pady=5, sticky="w")
+    royalty_entry = tk.Entry(root, width=15)
+    royalty_entry.grid(row=4, column=3, padx=10, pady=5)
 
-# Input fields for collection name
-tk.Label(root, text="Collection Name:").grid(row=5, column=0, padx=10, pady=5, sticky="w")
-collection_name_entry = tk.Entry(root, width=50)
-collection_name_entry.grid(row=5, column=1, padx=10, pady=5)
+    # Input fields for collection name
+    tk.Label(root, text="Collection Name:").grid(row=5, column=0, padx=10, pady=5, sticky="w")
+    collection_name_entry = tk.Entry(root, width=50)
+    collection_name_entry.grid(row=5, column=1, padx=10, pady=5)
 
-# Dropdown menu for cryptocurrency
+    # Dropdown menu for cryptocurrency
 
-tk.Label(root, text="Cryptocurrency:").grid(row=6, column=0, padx=10, pady=5, sticky="w")
-cryptocurrency_combobox = ttk.Combobox(root, values=cryptocurrencies, state="readonly")
-cryptocurrency_combobox.set("Ethereum")
-cryptocurrency_combobox.grid(row=6, column=1, padx=10, pady=5)
+    tk.Label(root, text="Cryptocurrency:").grid(row=6, column=0, padx=10, pady=5, sticky="w")
+    cryptocurrency_combobox = ttk.Combobox(root, values=cryptocurrencies, state="readonly")
+    cryptocurrency_combobox.set("Ethereum")
+    cryptocurrency_combobox.grid(row=6, column=1, padx=10, pady=5)
 
-# Checkbox for rare SVG file
-rare_var = tk.IntVar()
-tk.Checkbutton(root, text="Include Rare SVG", variable=rare_var, command=toggle_rare_fields).grid(row=7, column=0, padx=10, pady=5, sticky="w")
+    # Checkbox for rare SVG file
+    rare_var = tk.IntVar()
+    tk.Checkbutton(root, text="Include Rare SVG", variable=rare_var, command=toggle_rare_fields).grid(row=7, column=0, padx=10, pady=5, sticky="w")
 
-# Input fields for rare SVG file
-tk.Label(root, text="Rare SVG File Path:").grid(row=8, column=0, padx=10, pady=5, sticky="w")
-rare_svg_entry = tk.Entry(root, width=50, state="disabled")
-rare_svg_entry.grid(row=8, column=1, padx=10, pady=5)
+    # Input fields for rare SVG file
+    tk.Label(root, text="Rare SVG File Path:").grid(row=8, column=0, padx=10, pady=5, sticky="w")
+    rare_svg_entry = tk.Entry(root, width=50, state="disabled")
+    rare_svg_entry.grid(row=8, column=1, padx=10, pady=5)
 
-def browse_rare_svg():
-    rare_svg_path = filedialog.askopenfilename(filetypes=[("SVG Files", "*.svg")])
-    rare_svg_entry.insert(0, rare_svg_path)
+    def browse_rare_svg():
+        rare_svg_path = filedialog.askopenfilename(filetypes=[("SVG Files", "*.svg")])
+        rare_svg_entry.insert(0, rare_svg_path)
 
-rare_svg_browse_button = tk.Button(root, text="Browse", command=browse_rare_svg, state="disabled")
-rare_svg_browse_button.grid(row=8, column=2, padx=10, pady=5)
+    rare_svg_browse_button = tk.Button(root, text="Browse", command=browse_rare_svg, state="disabled")
+    rare_svg_browse_button.grid(row=8, column=2, padx=10, pady=5)
 
-# Input fields for rare NFT price
-tk.Label(root, text="Rare NFT Price:").grid(row=9, column=0, padx=10, pady=5, sticky="w")
-rare_price_entry = tk.Entry(root, width=20, state="disabled")
-rare_price_entry.grid(row=9, column=1, padx=10, pady=5)
+    # Input fields for rare NFT price
+    tk.Label(root, text="Rare NFT Price:").grid(row=9, column=0, padx=10, pady=5, sticky="w")
+    rare_price_entry = tk.Entry(root, width=20, state="disabled")
+    rare_price_entry.grid(row=9, column=1, padx=10, pady=5)
 
-# Input fields for rare NFTs royalty
-tk.Label(root, text="Rare NFT royalty:").grid(row=9, column=2, padx=10, pady=5, sticky="w")
-rare_royalty_entry = tk.Entry(root, width=15,state="disable")
-rare_royalty_entry.grid(row=9, column=3, padx=10, pady=5)
+    # Input fields for rare NFTs royalty
+    tk.Label(root, text="Rare NFT royalty:").grid(row=9, column=2, padx=10, pady=5, sticky="w")
+    rare_royalty_entry = tk.Entry(root, width=15,state="disable")
+    rare_royalty_entry.grid(row=9, column=3, padx=10, pady=5)
 
 
-# Add a dropdown menu for Sale Type
-sale_types = ["Fixed Price", "Auction", "Timed Auction"]
-tk.Label(root, text="Sale Type:").grid(row=10, column=0, padx=10, pady=5, sticky="w")
-sale_type_combobox = ttk.Combobox(root, values=sale_types, state="readonly")
-sale_type_combobox.set("Fixed Price")
-sale_type_combobox.grid(row=10, column=1, padx=10, pady=5)
+    # Add a dropdown menu for Sale Type
+    sale_types = ["Fixed Price", "Auction", "Timed Auction"]
+    tk.Label(root, text="Sale Type:").grid(row=10, column=0, padx=10, pady=5, sticky="w")
+    sale_type_combobox = ttk.Combobox(root, values=sale_types, state="readonly")
+    sale_type_combobox.set("Fixed Price")
+    sale_type_combobox.grid(row=10, column=1, padx=10, pady=5)
 
-#Checkbox for natural distribution for supply
-natural_dis_var = tk.IntVar()
-tk.Checkbutton(root, text="Create Supply (Natural Distribution)", variable=natural_dis_var, command=toggle_supply_fields).grid(row=11, column=0, padx=10, pady=5, sticky="w")
+    #Checkbox for natural distribution for supply
+    natural_dis_var = tk.IntVar()
+    tk.Checkbutton(root, text="Create Supply (Natural Distribution)", variable=natural_dis_var, command=toggle_supply_fields).grid(row=11, column=0, padx=10, pady=5, sticky="w")
 
-# Input fields for mean and standard deviation
-tk.Label(root, text="Mean:").grid(row=12, column=0, padx=10, pady=5, sticky="w")
-supply_mean_entry = tk.Entry(root, width=15, state="disabled")
-supply_mean_entry.grid(row=12, column=1, padx=10, pady=5)
+    # Input fields for mean and standard deviation
+    tk.Label(root, text="Mean:").grid(row=12, column=0, padx=10, pady=5, sticky="w")
+    supply_mean_entry = tk.Entry(root, width=15, state="disabled")
+    supply_mean_entry.grid(row=12, column=1, padx=10, pady=5)
 
-tk.Label(root, text="Std Dev:").grid(row=12, column=2, padx=10, pady=5, sticky="w")
-supply_std_entry = tk.Entry(root, width=15, state="disabled")
-supply_std_entry.grid(row=12, column=3, padx=10, pady=5)
+    tk.Label(root, text="Std Dev:").grid(row=12, column=2, padx=10, pady=5, sticky="w")
+    supply_std_entry = tk.Entry(root, width=15, state="disabled")
+    supply_std_entry.grid(row=12, column=3, padx=10, pady=5)
 
-# Input fields for manual supply
-tk.Label(root, text="Supply:").grid(row=13, column=0, padx=10, pady=5, sticky="w")
-supply_var = tk.StringVar(value="1")  # Default value is 1
-supply_entry = tk.Entry(root, textvariable=supply_var, width=15)
-supply_entry.grid(row=13, column=1, padx=10, pady=5)
+    # Input fields for manual supply
+    tk.Label(root, text="Supply:").grid(row=13, column=0, padx=10, pady=5, sticky="w")
+    supply_var = tk.StringVar(value="1")  # Default value is 1
+    supply_entry = tk.Entry(root, textvariable=supply_var, width=15)
+    supply_entry.grid(row=13, column=1, padx=10, pady=5)
 
-#Checkbox for attributes mapping
-attributes_mapping_var = tk.IntVar()
-tk.Checkbutton(root, text="Attributes mapping", variable=attributes_mapping_var, command=toggle_attributes_mapping_fields).grid(row=14, column=0, padx=10, pady=5, sticky="w")
+    #Checkbox for attributes mapping
+    attributes_mapping_var = tk.IntVar()
+    tk.Checkbutton(root, text="Attributes mapping", variable=attributes_mapping_var, command=toggle_attributes_mapping_fields).grid(row=14, column=0, padx=10, pady=5, sticky="w")
 
-def browse_attribute_map():
-    """Browse and select an attribute map json file."""
-    attribute_map_path = filedialog.askopenfilename(filetypes=[("JSON Files", "*.json")])
-    attributes_map_entry.insert(0, attribute_map_path)
+    def browse_attribute_map():
+        """Browse and select an attribute map json file."""
+        attribute_map_path = filedialog.askopenfilename(filetypes=[("JSON Files", "*.json")])
+        attributes_map_entry.insert(0, attribute_map_path)
 
-# Input fields for export folder
-tk.Label(root, text="Attributes map:").grid(row=15, column=0, padx=10, pady=5, sticky="w")
-attributes_map_entry = tk.Entry(root, width=50, state="disabled")
-attributes_map_entry.grid(row=15, column=1, padx=10, pady=5)
+    # Input fields for export folder
+    tk.Label(root, text="Attributes map:").grid(row=15, column=0, padx=10, pady=5, sticky="w")
+    attributes_map_entry = tk.Entry(root, width=50, state="disabled")
+    attributes_map_entry.grid(row=15, column=1, padx=10, pady=5)
 
-# Button to browse for attribute mappint text file
-attributes_map_browes_btn = tk.Button(root, text="Browse", command=browse_attribute_map, state="disabled")
-attributes_map_browes_btn.grid(row=15, column=2, padx=10, pady=5)
+    # Button to browse for attribute mappint text file
+    attributes_map_browes_btn = tk.Button(root, text="Browse", command=browse_attribute_map, state="disabled")
+    attributes_map_browes_btn.grid(row=15, column=2, padx=10, pady=5)
 
-# Button to generate NFTs
-tk.Button(root, text="Generate NFTs", command=generate_nft_collection, bg="green", fg="white").grid(row=20, column=1, padx=10, pady=20)
+    # Button to generate NFTs
+    tk.Button(root, text="Generate NFTs", command=generate_nft_collection, bg="green", fg="white").grid(row=20, column=1, padx=10, pady=20)
 
-# Button to adjust NFTs prices based on rarity
-adjust_price_button = tk.Button(
-    root, text="Adjust Prices Based on Rarity", 
-    command=adjust_prices_based_on_rarity, 
-    state="disabled",  # Disabled initially
-    bg="blue", fg="white"
-)
-adjust_price_button.grid(row=21, column=1, padx=10, pady=20)
+    # Button to adjust NFTs prices based on rarity
+    adjust_price_button = tk.Button(
+        root, text="Adjust Prices Based on Rarity", 
+        command=adjust_prices_based_on_rarity, 
+        state="disabled",  # Disabled initially
+        bg="blue", fg="white"
+    )
+    adjust_price_button.grid(row=21, column=1, padx=10, pady=20)
 
-# Add the Help button to the main window
-help_button = tk.Button(root, text="Help!", command=open_help_window, bg="blue", fg="white", font=("Arial", 12, "bold"))
-help_button.grid(row=1, column=3, padx=10, pady=20)
+    # Add the Help button to the main window
+    help_button = tk.Button(root, text="Help!", command=open_help_window, bg="blue", fg="white", font=("Arial", 12, "bold"))
+    help_button.grid(row=1, column=3, padx=10, pady=20)
 
-# Support Development button
-def open_donation_link():
-    webbrowser.open("https://www.paypal.com/donate/?hosted_button_id=MQSW5283NCXCJ")
+    # Support Development button
+    def open_donation_link():
+        webbrowser.open("https://www.paypal.com/donate/?hosted_button_id=MQSW5283NCXCJ")
 
-donation_button = tk.Button(root, text="Support Development", command=open_donation_link, bg="gold", fg="black")
-donation_button.grid(row=21, column=2, padx=10, pady=20)
-                                                                                  
-root.geometry("1000x750")
-root.resizable(False,False)
-# Run the GUI loop
-root.mainloop()
+    donation_button = tk.Button(root, text="Support Development", command=open_donation_link, bg="gold", fg="black")
+    donation_button.grid(row=21, column=2, padx=10, pady=20)
+                                                                                    
+    root.geometry("1000x750")
+    root.resizable(False,False)
+    # Run the GUI loop
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()
