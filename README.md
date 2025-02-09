@@ -23,10 +23,10 @@ The GUI provides all necessary fields for generating NFTs, including meta SVG fi
 ## Example Outputs
 
 ### Crazy Candles Collection
-![Crazy Candles Example GIF](/NFT_Python_generator/figures/squared_face_collection.gif)
+![Crazy Candles Example GIF](/NFT_Python_generator/figures/crazycandles_collection.gif)
 
 ### Square Face Collection
-![Square Face Example GIF](/NFT_Python_generator/figures/crazycandles_collection.gif)
+![Square Face Example GIF](/NFT_Python_generator/figures/squared_face_collection.gif)
 
 ## Installation
 
@@ -55,7 +55,7 @@ The GUI provides all necessary fields for generating NFTs, including meta SVG fi
 
 4. Run the GUI:
    ```bash
-   python -m NFT_Python_Generator.nft_gen_tool
+   python -m YOURPATH/NFT_Python_Generator/NFT_Python_Generator/gui.py
    ```
 
 ## Usage
